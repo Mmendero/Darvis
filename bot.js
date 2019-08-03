@@ -1,6 +1,7 @@
 const botSettings = require(`./botSettings.json`);
 const Discord = require("discord.js");
 const fs = require("fs");
+const mysql = require("mysql");
 
 const PREFIX = botSettings.PREFIX;
 
@@ -22,6 +23,19 @@ fs.readdir(`./commands/`, (err, files) => {
         console.log(`${i + 1}: ${f} loaded!`);
         bot.commands.set(props.help.name, props);
     });
+});
+
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "meRsli31:",
+    database: "testo"
+});
+
+con.connect(err => {
+    if(err) throw err;
+    console.log("Connected to database!");
+    con.query("SHOW TABLES", console.log)
 });
 
 bot.on('ready', () =>{
