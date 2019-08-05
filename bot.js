@@ -35,7 +35,7 @@ var con = mysql.createConnection({
 con.connect(err => {
     if(err) throw err;
     console.log("Connected to database!");
-    con.query("SHOW TABLES", console.log)
+    con.query("SHOW TABLES", console.log);
 });
 
 bot.on('ready', () =>{
@@ -55,7 +55,7 @@ bot.on("message", async message => {
     if(!command.startsWith(PREFIX)) return;
 
     let cmd = bot.commands.get(command.slice(PREFIX.length));
-    if(cmd) cmd.run(bot, message, args);
+    if(cmd) cmd.run(bot, message, args, con);
 
 
 });
