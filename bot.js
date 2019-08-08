@@ -27,9 +27,9 @@ fs.readdir(`./commands/`, (err, files) => {
 
 var con = mysql.createConnection({
     host: "localhost",
-    user: "root",
-    password: "meRsli31:",
-    database: "testo"
+    user: "",
+    password: "",
+    database: ""
 });
 
 con.connect(err => {
