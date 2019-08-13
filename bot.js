@@ -1,7 +1,6 @@
 const botSettings = require(`./botSettings.json`);
 const Discord = require("discord.js");
 const fs = require("fs");
-const mysql = require("mysql");
 
 const PREFIX = botSettings.PREFIX;
 
@@ -25,19 +24,6 @@ fs.readdir(`./commands/`, (err, files) => {
     });
 });
 
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "",
-    password: "",
-    database: ""
-});
-
-con.connect(err => {
-    if(err) throw err;
-    console.log("Connected to database!");
-    con.query("SHOW TABLES", console.log);
-});
-
 bot.on('ready', () =>{
     console.log('Darvis is Now Online!');
     console.log(bot.commands);
@@ -55,7 +41,7 @@ bot.on("message", async message => {
     if(!command.startsWith(PREFIX)) return;
 
     let cmd = bot.commands.get(command.slice(PREFIX.length));
-    if(cmd) cmd.run(bot, message, args, con);
+    if(cmd) cmd.run(bot, message, args);
 
 
 });
