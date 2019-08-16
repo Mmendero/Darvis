@@ -30,20 +30,3 @@ bot.on('ready', () =>{
     bot.user.setActivity('the servers dumb commands', {type: 'LISTENING'}).catch(console.error);
 });
 
-bot.on("message", async message => {
-    if(message.author.bot) return;
-    if(message.channel.type === "dm") return;
-
-    let messageArray = message.content.split(/\s+/g);
-    let command = messageArray[0];
-    let args = messageArray.slice(1);
-
-    if(!command.startsWith(PREFIX)) return;
-
-    let cmd = bot.commands.get(command.slice(PREFIX.length));
-    if(cmd) cmd.run(bot, message, args);
-
-
-});
-
-bot.login(botSettings.token);
